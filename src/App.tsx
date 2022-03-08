@@ -5,7 +5,7 @@ import "./App.css";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
-  const [deadline, setDeadline] = useState<string>(Date());
+  const [deadline, setDeadline] = useState<string>(Date);
   const [todoList, setTodoList] = useState([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -15,6 +15,12 @@ const App: FC = () => {
       setDeadline(event.target.value);
     }
   };
+
+  const addTask = (): void => {
+    setTask("");
+    setDeadline(Date);
+  };
+
   return (
     <div className="App">
       <h1>ToDo List </h1>
@@ -35,7 +41,7 @@ const App: FC = () => {
             onChange={handleChange}
           />
         </div>
-        <button>Add Task</button>
+        <button onClick={addTask}>Add Task</button>
       </div>
       <div className="todoList"></div>
     </div>

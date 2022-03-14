@@ -1,12 +1,13 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import moment from "moment";
+import { ITask } from "./interfaces";
 
 import "./App.css";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
-  const [deadline, setDeadline] = useState<string>(Date);
-  const [todoList, setTodoList] = useState([]);
+  const [deadline, setDeadline] = useState<string>("");
+  const [todoList, setTodoList] = useState<ITask[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === "task") {
@@ -17,8 +18,11 @@ const App: FC = () => {
   };
 
   const addTask = (): void => {
+    const newTask = { taskName: task, deadline: deadline };
+    setTodoList([...todoList, newTask]);
+    console.log(todoList);
     setTask("");
-    setDeadline(Date);
+    setDeadline("");
   };
 
   return (

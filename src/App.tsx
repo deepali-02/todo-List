@@ -3,6 +3,7 @@ import moment from "moment";
 import { ITask } from "./interfaces";
 
 import "./App.css";
+import ToDoList from "./Component/ToDoList";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
@@ -47,7 +48,11 @@ const App: FC = () => {
         </div>
         <button onClick={addTask}>Add Task</button>
       </div>
-      <div className="todoList"></div>
+      <div className="todoList">
+        {todoList.map((task:ITask, key:number)=>{
+          return <ToDoList key={key} task={task}/>
+        })}
+      </div>
     </div>
   );
 };

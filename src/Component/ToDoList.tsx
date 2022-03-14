@@ -3,17 +3,18 @@ import { getAllJSDocTagsOfKind } from "typescript";
 import {ITask} from "../interfaces"
 
 interface Props {
-    task:ITask
+    task:ITask,
+    completeTask(taskNameToDelete:string):void
 }
 
-export default function ToDoList({task}:Props) {
+export default function ToDoList({task, completeTask}:Props) {
   return (
     <div className="task">
         <div className="content">
      <span>{task.taskName}</span>
      <span>{task.deadline}</span>
      </div>
-     <button>X</button>
+     <button onClick={()=>{completeTask(task.taskName)}}>X</button>
     </div>
   );
 }
